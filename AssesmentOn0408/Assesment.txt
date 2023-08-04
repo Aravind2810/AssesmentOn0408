@@ -1,0 +1,119 @@
+1.Running Sum of 1d Array
+
+class Solution {
+    public int[] runningSum(int[] nums) {
+     int r=0;
+     int a[] = new int[nums.length];
+     for(int i=0;i<nums.length;i++){
+        r+=nums[i];
+        a[i] = r;     
+     } 
+     return a;
+    }
+}
+
+
+2.Sum of All Odd Length Subarrays
+
+
+class Solution {
+    public int sumOddLengthSubarrays(int[] arr) {
+        int sum=0,n=arr.length;
+        for(int i=0;i<n;i++){
+            int count=((i+1)*(n-i)+1)/2;
+            sum+=count*arr[i];
+        }
+        return sum;
+    }
+}
+
+
+3.Find the Highest Altitude
+
+
+class Solution {
+    public int largestAltitude(int[] gain) {
+        int max=0;
+        int sum=0;
+        for(int i=0;i<gain.length;i++){
+            sum+=gain[i];
+            max=Math.max(max,sum);
+        }
+        return max;
+    }
+}
+
+
+
+4.. Find the Middle Index in Array
+
+
+class Solution {
+    public int findMiddleIndex(int[] nums) {
+        int leftSum=0,rightSum=0;
+        for(int n:nums)rightSum += n;
+        for(int i=0;i<nums.length;i++){
+            rightSum -= nums[i];
+            if(leftSum == rightSum) return i;
+            leftSum +=nums[i];
+        }
+        return -1;
+    }
+}
+
+
+5.Find the Pivot Integer
+
+class Solution {
+    public int pivotInteger(int n) {
+        int a=(int)Math.sqrt((n*n + n)/2);
+        if(2*a*a==n*n+n)
+        return a;
+        return -1;
+    }
+}
+
+6.Confirmation Rate
+
+Select 
+    s.user_id, 
+    round(avg(case when c.action = 'confirmed' then 1.00 else 0.00 end), 2) as confirmation_rate
+from signups s left
+join confirmations c 
+using (user_id)
+group by s.user_id;
+
+7.Sum of Absolute Differences in a Sorted Array
+
+
+class Solution {
+    public int[] getSumAbsoluteDifferences(int[] nums) {
+        int n = nums.length , rightSum  = 0,leftSum = 0,totalSum = 0 ;
+        for(int i: nums) rightSum +=i;
+        for(int i = 0 ; i <n ; i++){
+            rightSum -=nums[i];
+            leftSum+=nums[i];
+            totalSum = Math.abs((i+1)*nums[i] -  leftSum) +
+            Math.abs((n-i-1)*nums[i]-rightSum);
+            nums[i] =  totalSum;
+        }
+    return nums;
+    }
+}
+
+8.Find the Score of All Prefixes of an Array
+
+
+class Solution {
+    public long[] findPrefixScore(int[] nums) {
+        long[] arr= new long[nums.length];
+        long max=nums[0];
+        long sum=0;
+        for(int i=0;i<nums.length;i++){
+            max=max<=nums[i]?nums[i]:max;
+            sum=sum+nums[i]+max;
+            arr[i]=sum;
+        }
+        return arr;
+    }
+}
